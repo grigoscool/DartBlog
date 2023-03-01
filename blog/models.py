@@ -35,6 +35,7 @@ class Post(models.Model):
     photo = models.ImageField(upload_to='photo/%Y/%m/%d/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
     tag = models.ManyToManyField(Tag, related_name='posts')
+    is_published = models.BooleanField()
 
     def __str__(self):
         return self.title
