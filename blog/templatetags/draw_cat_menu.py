@@ -8,16 +8,17 @@ register = template.Library()
 @register.inclusion_tag('blog/cat_menu.html', takes_context=True)
 def get_cat_menu(context, menu_class=None):
     """
-    draw category list in navbar and footer
+    Draw category list in navbar and footer.
     :param context:
-    :param menu_class: style class
-    :return: dict of category queryset
+    :param menu_class: style class of container
+    :return: queryset dict of category
     """
+    # check active home page or category
     if check_home(str(context['request']).split('/')):
         active_cat = 'home'
     else:
         active_cat = str(context['request']).split('/')[-2]
-    # cache category queryset
+    # cache category queryset to only 1 sql
     cats = cache.get('cats')
     if not cats:
         cats = Category.objects.all()
