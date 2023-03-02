@@ -14,22 +14,9 @@
 								<div class="for-style">
 									{{ post.content|safe }}
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="image-one">
-											<img src="img/blog-image1.jpg" alt="">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="image-two">
-											<img src="img/blog-image2.jpg" alt="">
-										</div>
-									</div>
-								</div>
-								<br>
 							</div>
 							<div class="ads-area">
-								<img src="img/ads.jpg" alt="">
+								<img src="{% static 'img/ads.jpg" alt' %}="">
 								<p>Your Ad Banner Goes Here</p>
 							</div>
 							<div class="commententries">
@@ -39,7 +26,7 @@
 									<li>
 										<article class="comment">
 											<header class="comment-author">
-												<img src="img/author-1.jpg" alt="">
+												<img src="{% static 'img/author-1.jpg' %}" alt="">
 											</header>
 											<section class="comment-details">
 												<div class="author-name">
@@ -61,7 +48,7 @@
 											<li>
 												<article class="comment">
 													<header class="comment-author">
-														<img src="img/author-2.jpg" alt="">
+														<img src="{% static 'img/author-2.jpg' %}" alt="">
 													</header>
 													<section class="comment-details">
 														<div class="author-name">
@@ -85,7 +72,7 @@
 									<li>
 										<article class="comment">
 											<header class="comment-author">
-												<img src="img/author-3.jpg" alt="">
+												<img src="{% static 'img/author-3.jpg' %}" alt="">
 											</header>
 											<section class="comment-details">
 												<div class="author-name">
