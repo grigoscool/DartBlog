@@ -1,0 +1,9 @@
+{% load draw_cat_menu %}
+<div class="{{ menu_class }}">
+	<ul>
+		<li><a href="{% url 'index' %}">Home</a></li>
+		{% for cat in cats %}
+		<li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+		{% endfor %}
+	</ul>
+</div>

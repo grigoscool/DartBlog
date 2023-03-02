@@ -1,0 +1,15 @@
+{% load draw_cat_menu %}
+<header class="header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="logo">
+					<h2><a href="#">Classic</a></h2>
+				</div>
+			</div>
+			<div class="col-md-10">
+				{% get_cat_menu 'menu' %}
+			</div>
+		</div>
+	</div>
+</header>
