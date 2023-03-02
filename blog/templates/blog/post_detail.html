@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %} {{ title }} :: {{ block.super }} {% endblock %}
 {% block content %}
 <section class="single-blog-area">
 	<div class="container">
@@ -31,12 +31,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="image-one">
-											<img src="img/blog-image1.jpg" alt="">
+											<img src="{% static 'img/blog-image1.jpg' %}" alt="1111">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="image-two">
-											<img src="img/blog-image2.jpg" alt="">
+											<img src="{% static 'img/blog-image2.jpg' %}" alt="2222">
 										</div>
 									</div>
 								</div>
@@ -52,7 +52,7 @@
 									aliquip ex ea commodo consequat. Duis aute</p>
 							</div>
 							<div class="ads-area">
-								<img src="img/ads.jpg" alt="">
+								<img src="{% static 'img/ads.jpg' %}" alt="">
 								<p>Your Ad Banner Goes Here</p>
 							</div>
 							<div class="commententries">
@@ -62,7 +62,7 @@
 									<li>
 										<article class="comment">
 											<header class="comment-author">
-												<img src="img/author-1.jpg" alt="">
+												<img src="{% static 'img/author-1.jpg' %}" alt="">
 											</header>
 											<section class="comment-details">
 												<div class="author-name">
@@ -84,7 +84,7 @@
 											<li>
 												<article class="comment">
 													<header class="comment-author">
-														<img src="img/author-2.jpg" alt="">
+														<img src="{% static 'img/author-2.jpg' %}" alt="">
 													</header>
 													<section class="comment-details">
 														<div class="author-name">
@@ -108,7 +108,7 @@
 									<li>
 										<article class="comment">
 											<header class="comment-author">
-												<img src="img/author-3.jpg" alt="">
+												<img src="{% static 'img/author-3.jpg' %}" alt="">
 											</header>
 											<section class="comment-details">
 												<div class="author-name">

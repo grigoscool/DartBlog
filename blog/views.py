@@ -8,7 +8,6 @@ class IndexView(generic.ListView):
     """
     Home view - list of posts and main post.
     """
-    model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
     paginate_by = 4
@@ -23,18 +22,26 @@ class IndexView(generic.ListView):
 
 
 class PostView(generic.DetailView):
+    """
+    Show current post.
+    """
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post'].title
+        return context
 
 
 class PostsByCategory(generic.ListView):
     """
     Show posts list by current category.
     """
-    model = Post
     template_name = 'blog/postsByCat.html'
     paginate_by = 4
+    allow_empty = False
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -43,7 +50,5 @@ class PostsByCategory(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # takes category title into page title
-        if len(context['posts']) > 0:
-            context['title'] = context['posts'][0].category
+        context['title'] = context['posts'][0].category
         return context
