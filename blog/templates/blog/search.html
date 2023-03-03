@@ -21,6 +21,8 @@
 						<h4><span>{{ post.create_at|date:"d.N.Y" }}</span></h4>
 					</div>
 				</div>
+				{% empty %}
+				<h3>Sory, no such post title.</h3>
 				{% endfor %}
 			</div>
 		</div>

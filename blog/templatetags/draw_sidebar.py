@@ -1,5 +1,6 @@
-from django import template
 import random
+
+from django import template
 
 from blog.models import Post
 
@@ -8,6 +9,11 @@ register = template.Library()
 
 @register.inclusion_tag('blog/sidebar_posts.html', takes_context=True)
 def get_sidebar_posts(context, cnt=3):
+    """
+    Draw posts list to sidebar.
+    :param cnt: count of posts
+    :return: queryset of posts by tap botton
+    """
     # Take posts list for sidebar
     order = context['request'].GET
     # Takes random post list if no get request
@@ -27,5 +33,3 @@ def get_sidebar_posts(context, cnt=3):
             elif i == 'user':
                 sidebar_posts = Post.objects.all().order_by('author')[:cnt]
                 return {'sidebar_posts': sidebar_posts}
-
-

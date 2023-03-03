@@ -1,8 +1,7 @@
 from django.db.models import F
-from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
-from .models import Post, Category, Tag
+from .models import Post, Tag
 
 
 class IndexView(generic.ListView):
@@ -79,6 +78,9 @@ class PostsByTag(generic.ListView):
 
 
 class Search(generic.ListView):
+    """
+    Show page with search result.
+    """
     model = Post
     template_name = 'blog/search.html'
     paginate_by = 1

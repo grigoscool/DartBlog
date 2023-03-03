@@ -1,5 +1,6 @@
 from django import template
 from django.core.cache import cache
+
 from blog.models import Category
 
 register = template.Library()
@@ -9,9 +10,8 @@ register = template.Library()
 def get_cat_menu(context, menu_class=None):
     """
     Draw category list in navbar and footer.
-    :param context:
     :param menu_class: style class of container
-    :return: queryset dict of category
+    :return: queryset of category
     """
     # check active home page or category
     if check_home(str(context['request']).split('/')):
@@ -28,4 +28,3 @@ def get_cat_menu(context, menu_class=None):
 
 def check_home(s: list):
     return False if 'category' in s else True
-
