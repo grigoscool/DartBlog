@@ -1,5 +1,5 @@
 from django.db.models import F
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
 from .models import Post, Category, Tag
@@ -76,3 +76,19 @@ class PostsByTag(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = Tag.objects.get(slug=self.kwargs['slug'])
         return context
+
+
+class Search(generic.ListView):
+    model = Post
+    template_name = 'blog/search.html'
+    paginate_by = 1
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Search'
+        context['search'] = f"search={self.request.GET.get('search')}&"
+        return context
+
+    def get_queryset(self):
+        return Post.objects.filter(title__icontains=self.request.GET.get('search'))

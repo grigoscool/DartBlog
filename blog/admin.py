@@ -34,9 +34,9 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('create_at', 'is_published', 'tag', 'category')
     list_display = (
         'id', 'title', 'author', 'create_at', 'views', 'get_photo',
-        'category', 'is_published')
+        'category', 'is_published', 'is_main')
     list_display_links = ('id', 'title')
-    list_editable = ('is_published', 'category')
+    list_editable = ('is_published', 'category', 'is_main')
     save_on_top = True
     fields = (
         'id', 'title', 'author', 'create_at', 'views',

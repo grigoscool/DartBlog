@@ -31,6 +31,7 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reverse('post_by_tag', kwargs={'slug': self.slug})
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, verbose_name='Url post')
@@ -42,6 +43,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
     tag = models.ManyToManyField(Tag, related_name='posts')
     is_published = models.BooleanField()
+    is_main = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

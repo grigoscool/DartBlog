@@ -9,4 +9,5 @@ urlpatterns = [
          name='posts_by_cat'),
     path('post/<str:slug>/', views.PostView.as_view(), name='post-detail'),
     path('tag/<str:slug>/', views.PostsByTag.as_view(), name='post_by_tag'),
+    path('search/', views.Search.as_view(), name='search'),
 ]
