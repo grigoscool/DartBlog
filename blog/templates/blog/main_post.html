@@ -1,0 +1,13 @@
+<div class="col-md-12">
+	<div class="single-post-big">
+		<div class="big-image">
+			<img src="{{ main_post.photo.url }}" alt="post_id:{{ main_post.pk }}">
+		</div>
+		<div class="big-text">
+			<h3><a href="{{ main_post.get_absolute_url }}">{{ main_post.title }}</a></h3>
+			{{ main_post.content|safe|truncatechars:350 }}
+			<h4><span class="date">{{ main_post }}</span><span class="author">Posted By: <span class="author-name">{{ main_post.author }}</span></span>
+			</h4>
+		</div>
+	</div>
+</div>
