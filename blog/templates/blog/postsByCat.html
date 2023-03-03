@@ -12,7 +12,7 @@
 						{% if post.photo %}
 						<img src="{{ post.photo.url }}" alt="{{ post.photo }}" height="200" width="300">
 						{% endif %}
-						<h3><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h3>
+						<h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
 						<h4><span>Posted By: <span class="author-name">{{ post.author }}</span></span>
 						</h4>
 						{% autoescape off %}
