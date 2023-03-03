@@ -4,7 +4,7 @@
 		<img src="{{ post.photo.url }}" alt="">
 		<div class="portfolio-text">
 			<h5><a href="{{ post.get_absolute_url }}">Pay Close Attention To People Who Don’t Clap When You Win recent1.</a></h5>
-			<p>By {{ post.author.username }} <span>|</span>{{ create_at }}</p>
+			<p>By {{ post.author.username }} <span>|</span>{{ post.create_at }} <span>|</span>views: {{post.views}}</p>
 		</div>
 	</div>
 	{% endfor %}
