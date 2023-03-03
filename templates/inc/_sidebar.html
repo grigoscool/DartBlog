@@ -1,0 +1,17 @@
+{% load draw_tag_menu %}
+
+{% get_tag_menu %}
+
+<div class="button-group filters-button-group">
+	<button data-filter=".recent" class="button is-checked">Recent</button>
+	<button data-filter=".popular" class="button">popular</button>
+	<button data-filter=".users" class="button">Users</button>
+</div>
+
+<div class="newsletter">
+	<h2 class="sidebar-title">Subscribe To oUR nEWSLETTER</h2>
+	<form action="#" method="post">
+		<input type="email" name="" id="" placeholder="Email">
+		<input type="submit" value="Subscribe">
+	</form>
+</div>
