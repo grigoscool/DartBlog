@@ -28,6 +28,8 @@ class Tag(models.Model):
     class Meta:
         ordering = ['title']
 
+    def get_absolute_url(self):
+        return reverse('post_by_tag', kwargs={'slug': self.slug})
 
 class Post(models.Model):
     title = models.CharField(max_length=200)

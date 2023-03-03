@@ -2,7 +2,7 @@ from django.db.models import F
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 
 class IndexView(generic.ListView):
@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     paginate_by = 4
 
     def get_queryset(self):
-        return Post.objects.all().select_related('author')
+        return Post.objects.all().order_by('-views').select_related('author')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -34,7 +34,8 @@ class PostView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         self.object.views = F('views') + 1
         self.object.save()
-        
+        self.object.refresh_from_db()
+
         context['title'] = context['post'].title
         return context
 
@@ -50,9 +51,28 @@ class PostsByCategory(generic.ListView):
 
     def get_queryset(self):
         return Post.objects.filter(
-            category__slug=self.kwargs['slug']).select_related('author')
+            category__slug=self.kwargs['slug']).order_by('-views').select_related('author')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['posts'][0].category
+        return context
+
+
+class PostsByTag(generic.ListView):
+    """
+    Show posts list by current tag.
+    """
+    template_name = 'blog/postsByTag.html'
+    paginate_by = 4
+    allow_empty = False
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            tag__slug=self.kwargs['slug']).order_by('-views').select_related('author')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = Tag.objects.get(slug=self.kwargs['slug'])
         return context
