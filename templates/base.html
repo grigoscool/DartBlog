@@ -20,6 +20,19 @@
 	<body>
 		<div class="wrapper">
 			{% include 'inc/_header.html' %}
+			{% if messages %}
+			{% for message in messages %}
+			{% if message.tags == 'error' %}
+			<div class="alert alert-danger" role="alert">
+				{{ message }}
+			</div>
+			{% else %}
+			<div class="alert alert-success" role="alert">
+				{{ message }}
+			</div>
+			{% endif %}
+			{% endfor %}
+			{% endif %}
 			{% block content %}
 			{% endblock %}
 			{% include 'inc/_footer.html' %}

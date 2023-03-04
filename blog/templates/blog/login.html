@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} :: {{ block.super }} {% endblock %}
+{% block content %}
+<h2>Зайти в свой аккаунт</h2>
+<form action="{% url 'index' %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">login</button>
+</form>
+{% endblock %}

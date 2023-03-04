@@ -5,5 +5,10 @@
 		{% for cat in cats %}
 		<li {% if active_cat == cat.title %} class="active" {% endif %}><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
 		{% endfor %}
+				<li>
+					<span class="navbar-brand ">
+        | <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a> |
+        </span>
+				</li>
 	</ul>
 </div>

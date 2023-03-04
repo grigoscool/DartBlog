@@ -1,8 +1,12 @@
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.db.models import F
 from django.views import generic
+from django.shortcuts import render, redirect
 
 from .models import Post, Tag
-
+from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
 
 class IndexView(generic.ListView):
     """
@@ -94,3 +98,28 @@ class Search(generic.ListView):
 
     def get_queryset(self):
         return Post.objects.filter(title__icontains=self.request.GET.get('search'))
+
+
+def login(request):
+
+    return render(request, 'blog/login.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'УРА')
+            return redirect('login')
+        else:
+            messages.error(request, 'NOT RIGHT')
+    else:
+        form = RegisterForm()
+    return render(request, 'blog/register.html', {'form': form})
+
+
+# class Register(generic.CreateView):
+#     model = User
+#     form_class = UserCreationForm
+#     template_name = 'blog/register.html'
+#     context_object_name = 'form'
